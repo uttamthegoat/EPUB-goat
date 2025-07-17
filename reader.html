@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EPUB Reader</title>
+  <link rel="stylesheet" href="font-styles.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="upload-section" id="uploadSection">
+      <h1>EPUB Reader</h1>
+      <div class="upload-area">
+        <input type="file" id="epubFile" accept=".epub" style="display: none;">
+        <button id="uploadBtn" class="upload-button">Upload EPUB File</button>
+        <p class="upload-text">Click to select an EPUB file</p>
+      </div>
+    </div>
+    
+    <div class="reader-section" id="readerSection" style="display: none;">
+      <div class="sidebar" id="sidebar">
+        <h3>Chapters</h3>
+        <div class="chapter-list" id="chapterList"></div>
+      </div>
+      
+      <div class="content-area">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <button id="prevBtn">Previous</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn">Next</button>
+          </div>
+          
+          <div class="toolbar-right">
+            <div class="font-selector">
+              <label for="fontDropdown">Font:</label>
+              <select id="fontDropdown">
+                <option value="default">Default</option>
+                <option value="inter">Inter</option>
+                <option value="poppins">Poppins</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="page-content" id="pageContent"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="jszip.min.js"></script>
+  <script src="reader.js"></script>
+</body>
+</html>

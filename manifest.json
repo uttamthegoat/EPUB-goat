@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "EPUB Reader",
+  "version": "1.0",
+  "description": "Read EPUB files in Firefox",
+  "author": "Your Name",
+    "icons": {
+    "48": "icons/icon-48.webp",
+    "96": "icons/icon-96.webp"
+  },
+
+  "permissions": ["tabs", "activeTab", "storage"],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "browser_action": {
+    "default_title": "Open EPUB Reader",
+    "default_icon": {
+      "48": "icons/icon-48.webp",
+      "96": "icons/icon-96.webp"
+    }
+  },
+
+  "web_accessible_resources": [
+    "reader.html",
+    "reader.css",
+    "font-styles.css",
+    "reader.js",
+    "jszip.min.js",
+    "fonts/Inter-Medium.otf",
+    "fonts/Poppins-Medium.ttf"
+  ],
+
+  "content_security_policy": "script-src 'self'; object-src 'self'"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "epub-reader-extension",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run clean && npm run copy-deps && npm run package",
+    "copy-deps": "cp node_modules/jszip/dist/jszip.min.js .",
+    "clean": "rm -f jszip.min.js epub-reader.zip",
+    "package": "bestzip epub-reader.zip manifest.json background.js reader.html styles.css font-styles.css reader.js jszip.min.js icons/"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "bestzip": "^2.2.1"
+  }
+}
