@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EPUB Reader</title>
   <link rel="stylesheet" href="css/main.css">
 </head>
@@ -17,8 +18,15 @@
     </div>
     
     <div class="reader-section" id="readerSection" style="display: none;">
+      <button id="sidebarToggle" class="sidebar-toggle">
+        <span class="hamburger"></span>
+      </button>
+      
       <div class="sidebar" id="sidebar">
-        <h3>Chapters</h3>
+        <div class="sidebar-header">
+          <h3>Chapters</h3>
+          <button id="sidebarClose" class="sidebar-close">&times;</button>
+        </div>
         <div class="chapter-list" id="chapterList"></div>
       </div>
       
@@ -46,7 +54,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="credits-section">
     <p>by uttamthegoat</p>
   </div>

@@ -9,13 +9,32 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
 }
 
 .sidebar h3 {
-  margin-bottom: 20px;
   color: #e2e8f0;
   font-size: 18px;
   flex-shrink: 0;
+  margin: 0;
 }
 
 .chapter-list {
@@ -23,6 +42,48 @@
   overflow-y: auto;
   padding-right: 10px;
   margin-right: -10px;
+}
+
+/* Hamburger menu */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 100;
+  background: #2d3748;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #e2e8f0;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #e2e8f0;
+  left: 0;
+}
+
+.hamburger::before {
+  top: -6px;
+}
+
+.hamburger::after {
+  bottom: -6px;
 }
 
 /* Custom scrollbar for sidebar */
@@ -69,4 +130,30 @@
 .chapter-item.active {
   background: #292c30;
   border: 1px solid #747475;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .sidebar-toggle {
+    display: block;
+  }
+  
+  .sidebar-close {
+    display: block;
+  }
 } 

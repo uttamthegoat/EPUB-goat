@@ -8,6 +8,7 @@ class EPUBReader {
       fontFamily: "default",
       fontSize: 16,
     };
+    this.lastScrollTop = 0;
     this.init();
   }
 
@@ -41,6 +42,39 @@ class EPUBReader {
     prevBtn.addEventListener("click", () => this.previousChapter());
     nextBtn.addEventListener("click", () => this.nextChapter());
 
+    // Mobile sidebar toggle functionality
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebarClose = document.getElementById("sidebarClose");
+    const sidebar = document.getElementById("sidebar");
+    
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+    }
+    
+    if (sidebarClose && sidebar) {
+      sidebarClose.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+    }
+    
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener("click", (event) => {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile && sidebar && sidebar.classList.contains("active")) {
+        // Check if click is outside sidebar and not on the toggle button
+        if (!sidebar.contains(event.target) && 
+            event.target !== sidebarToggle && 
+            (!sidebarToggle || !sidebarToggle.contains(event.target))) {
+          sidebar.classList.remove("active");
+        }
+      }
+    });
+
+    // Hide toolbar on scroll down, show on scroll up
+    this.setupScrollListener();
+
     // font listener
     const fontDropdown = document.getElementById("fontDropdown");
     if (fontDropdown) {
@@ -51,6 +85,38 @@ class EPUBReader {
 
     // Load saved settings
     this.loadSettings();
+  }
+
+  setupScrollListener() {
+    const pageContent = document.getElementById("pageContent");
+    const toolbar = document.querySelector(".toolbar");
+    
+    if (!pageContent || !toolbar) return;
+    
+    let lastScrollTop = 0;
+    let scrollTimeout;
+    
+    pageContent.addEventListener("scroll", () => {
+      clearTimeout(scrollTimeout);
+      
+      const scrollTop = pageContent.scrollTop;
+      
+      // Determine scroll direction
+      if (scrollTop > lastScrollTop && scrollTop > 50) {
+        // Scrolling down & not at the top
+        toolbar.classList.add("hidden");
+      } else {
+        // Scrolling up or at the top
+        toolbar.classList.remove("hidden");
+      }
+      
+      lastScrollTop = scrollTop;
+      
+      // Show toolbar after scrolling stops
+      scrollTimeout = setTimeout(() => {
+        toolbar.classList.remove("hidden");
+      }, 1500);
+    });
   }
 
   changeFontFamily(fontFamily) {
@@ -269,24 +335,38 @@ class EPUBReader {
 
   goToChapter(index) {
     if (index < 0 || index >= this.chapters.length) return;
-
+    
     this.currentChapter = index;
     const chapter = this.chapters[index];
-
-    // Update content
+    
+    // Display chapter content
     const pageContent = document.getElementById("pageContent");
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(chapter.content, "text/html");
-    const bodyContent = doc.body.innerHTML;
-    pageContent.innerHTML = bodyContent;
-
-    // Update chapter list highlighting
-    document.querySelectorAll(".chapter-item").forEach((item, i) => {
-      item.classList.toggle("active", i === index);
-    });
-
+    pageContent.innerHTML = chapter.content;
+    
     // Update navigation
     this.updateNavigation();
+    
+    // Highlight active chapter in the list
+    const chapterItems = document.querySelectorAll(".chapter-item");
+    chapterItems.forEach((item, i) => {
+      if (i === index) {
+        item.classList.add("active");
+        item.setAttribute("aria-current", "true");
+      } else {
+        item.classList.remove("active");
+        item.setAttribute("aria-current", "false");
+      }
+    });
+    
+    // Scroll to top of the page
+    pageContent.scrollTop = 0;
+    window.scrollTo(0, 0);
+    
+    // Close sidebar on mobile after chapter selection
+    const sidebar = document.getElementById("sidebar");
+    if (window.innerWidth <= 768 && sidebar) {
+      sidebar.classList.remove("active");
+    }
   }
 
   updateNavigation() {
@@ -304,21 +384,26 @@ class EPUBReader {
   previousChapter() {
     if (this.currentChapter > 0) {
       this.goToChapter(this.currentChapter - 1);
+      // Scroll to top is handled in goToChapter
     }
   }
 
   nextChapter() {
     if (this.currentChapter < this.chapters.length - 1) {
       this.goToChapter(this.currentChapter + 1);
+      // Scroll to top is handled in goToChapter
     }
   }
 
   showReader() {
     document.getElementById("uploadSection").style.display = "none";
     document.getElementById("readerSection").style.display = "flex";
-
+    
     // Apply saved settings when reader is shown
     this.applySettings();
+    
+    // Setup scroll listener after reader is shown
+    this.setupScrollListener();
   }
 }
 

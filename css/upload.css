@@ -19,7 +19,8 @@
 }
 
 .upload-button {
-  background: #4299e1;
+  background: #15171a;
+  border: 1px solid #5e6063;
   color: white;
   border: none;
   padding: 15px 30px;
@@ -31,7 +32,8 @@
 }
 
 .upload-button:hover {
-  background: #3182ce;
+  background: #292c30;
+  border: 1px solid #747475;
 }
 
 .upload-text {

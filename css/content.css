@@ -66,4 +66,16 @@
   height: auto;
   display: block;
   margin: 20px auto;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .content-area {
+    width: 100%;
+  }
+  
+  .page-content {
+    padding: 20px;
+    font-size: 14px;
+  }
 } 

@@ -7,6 +7,14 @@
   background: #000000;
   border-bottom: 1px solid #4a5568;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.toolbar.hidden {
+  transform: translateY(-100%);
 }
 
 .toolbar button {
