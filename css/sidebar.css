@@ -1,0 +1,72 @@
+/* Sidebar styles */
+.sidebar {
+  width: 300px;
+  background: #000000;
+  color: #e2e8f0;
+  padding: 20px;
+  border-right: 1px solid #2d3748;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar h3 {
+  margin-bottom: 20px;
+  color: #e2e8f0;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.chapter-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-right: -10px;
+}
+
+/* Custom scrollbar for sidebar */
+.chapter-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chapter-list::-webkit-scrollbar-track {
+  background: #2d3748;
+  border-radius: 4px;
+}
+
+.chapter-list::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+.chapter-list::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Firefox scrollbar styling for sidebar */
+.chapter-list {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5568 #2d3748;
+}
+
+.chapter-item {
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #2d3748;
+  background: #000000;
+  transition: background 0.3s;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.chapter-item:hover {
+  background: #3a4a61;
+}
+
+.chapter-item.active {
+  background: #292c30;
+  border: 1px solid #747475;
+} 

@@ -1,0 +1,69 @@
+/* Content area styles */
+.reader-section {
+  display: flex;
+  height: 100vh;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #000000;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page-content {
+  flex: 1;
+  padding: 30px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #e2e8f0;
+  overflow-y: auto;
+  font-family: Georgia, serif;
+  transition: font-family 0.3s ease;
+  background: #000000;
+}
+
+/* Custom scrollbar for content area */
+.page-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.page-content::-webkit-scrollbar-track {
+  background: #2d3748;
+  border-radius: 6px;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 6px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Firefox scrollbar styling for content area */
+.page-content {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5568 #2d3748;
+}
+
+.page-content h1, .page-content h2, .page-content h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #e2e8f0;
+}
+
+.page-content p {
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.page-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+} 

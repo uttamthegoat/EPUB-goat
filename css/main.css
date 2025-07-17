@@ -1,0 +1,8 @@
+/* Main CSS file that imports all modular CSS files */
+@import 'base.css';
+@import 'upload.css';
+@import 'sidebar.css';
+@import 'content.css';
+@import 'toolbar.css';
+@import 'notifications.css';
+@import 'font.css'; 

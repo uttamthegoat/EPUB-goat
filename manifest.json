@@ -26,8 +26,14 @@
 
   "web_accessible_resources": [
     "reader.html",
-    "reader.css",
-    "font-styles.css",
+    "css/main.css",
+    "css/base.css",
+    "css/upload.css",
+    "css/sidebar.css",
+    "css/content.css",
+    "css/toolbar.css",
+    "css/notifications.css",
+    "css/font.css",
     "reader.js",
     "jszip.min.js",
     "fonts/Inter-Medium.otf",

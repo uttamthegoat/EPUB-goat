@@ -5,7 +5,7 @@
     "build": "npm run clean && npm run copy-deps && npm run package",
     "copy-deps": "cp node_modules/jszip/dist/jszip.min.js .",
     "clean": "rm -f jszip.min.js epub-reader.zip",
-    "package": "bestzip epub-reader.zip manifest.json background.js reader.html styles.css font-styles.css reader.js jszip.min.js icons/"
+    "package": "bestzip epub-reader.zip manifest.json background.js reader.html reader.js jszip.min.js icons/ css/"
   },
   "dependencies": {
     "jszip": "^3.10.1"
