@@ -26,6 +26,13 @@
     }
   },
 
+  "applications": {
+    "gecko": {
+      "id": "epub-goat@uttamthegoat.com",
+      "strict_min_version": "1.0"
+    } 
+  },
+
   "web_accessible_resources": [
     "reader.html",
     "css/main.css",
