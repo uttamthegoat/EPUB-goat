@@ -5,6 +5,7 @@
   "description": "Read EPUB files in Firefox",
   "author": "uttamthegoat",
     "icons": {
+      "16": "icons/icon-16.webp",
     "48": "icons/icon-48.webp",
     "96": "icons/icon-96.webp"
   },
@@ -19,6 +20,7 @@
   "browser_action": {
     "default_title": "Open EPUB Reader",
     "default_icon": {
+      "16": "icons/icon-16.webp",
       "48": "icons/icon-48.webp",
       "96": "icons/icon-96.webp"
     }
