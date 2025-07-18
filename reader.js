@@ -23,11 +23,23 @@ class EPUBReader {
   showError(message) {
     const errorDiv = document.createElement("div");
     errorDiv.className = "error-message";
-    errorDiv.innerHTML = `
-      <h3>Error</h3>
-      <p>${message}</p>
-      <button onclick="location.reload()">Reload</button>
-    `;
+    
+    // Create elements instead of using innerHTML
+    const heading = document.createElement("h3");
+    heading.textContent = "Error";
+    
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+    
+    const button = document.createElement("button");
+    button.textContent = "Reload";
+    button.addEventListener("click", () => location.reload());
+    
+    // Append elements to the error div
+    errorDiv.appendChild(heading);
+    errorDiv.appendChild(paragraph);
+    errorDiv.appendChild(button);
+    
     document.body.appendChild(errorDiv);
   }
 
@@ -318,7 +330,11 @@ class EPUBReader {
 
   renderChapterList() {
     const chapterList = document.getElementById("chapterList");
-    chapterList.innerHTML = "";
+    
+    // Clear the chapter list safely
+    while (chapterList.firstChild) {
+      chapterList.removeChild(chapterList.firstChild);
+    }
 
     this.chapters.forEach((chapter, index) => {
       const chapterItem = document.createElement("div");
@@ -339,9 +355,31 @@ class EPUBReader {
     this.currentChapter = index;
     const chapter = this.chapters[index];
     
-    // Display chapter content
+    // Display chapter content - using DOMParser for safer HTML handling
     const pageContent = document.getElementById("pageContent");
-    pageContent.innerHTML = chapter.content;
+    
+    // Clear existing content
+    while (pageContent.firstChild) {
+      pageContent.removeChild(pageContent.firstChild);
+    }
+    
+    // Parse the HTML content
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(chapter.content, "text/html");
+    
+    // Import and append the body content
+    const bodyContent = doc.querySelector("body");
+    if (bodyContent) {
+      // Use a document fragment for better performance
+      const fragment = document.createDocumentFragment();
+      
+      // Clone all child nodes from the parsed body
+      Array.from(bodyContent.childNodes).forEach(node => {
+        fragment.appendChild(document.importNode(node, true));
+      });
+      
+      pageContent.appendChild(fragment);
+    }
     
     // Update navigation
     this.updateNavigation();

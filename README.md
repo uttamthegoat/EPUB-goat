@@ -6,3 +6,4 @@
 3.  Next Open browser and go to extension section in browser and import file from files:
     a. For PC: .zip and .xpi (any of the 2 works)
     b. For Android: only .xpi works
+4. While applying to Firefox, make sure to select the correct version of Firefox.

@@ -5,9 +5,9 @@
   "description": "Read EPUB files in Firefox",
   "author": "uttamthegoat",
     "icons": {
-      "16": "icons/icon-16.webp",
-    "48": "icons/icon-48.webp",
-    "96": "icons/icon-96.webp"
+      "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
   },
 
   "permissions": ["tabs", "activeTab", "storage"],
@@ -20,16 +20,16 @@
   "browser_action": {
     "default_title": "Open EPUB Reader",
     "default_icon": {
-      "16": "icons/icon-16.webp",
-      "48": "icons/icon-48.webp",
-      "96": "icons/icon-96.webp"
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
     }
   },
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "epub-goat@uttamthegoat.com",
-      "strict_min_version": "1.0"
+      "strict_min_version": "79.0"
     } 
   },
 
@@ -44,7 +44,7 @@
     "css/notifications.css",
     "css/font.css",
     "reader.js",
-    "jszip.min.js",
+    "jszip.js",
     "fonts/Inter-Medium.otf",
     "fonts/Poppins-Medium.ttf"
   ],

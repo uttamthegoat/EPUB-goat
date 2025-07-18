@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "npm run clean && npm run copy-deps && npm run package",
-    "copy-deps": "copyfiles -f node_modules/jszip/dist/jszip.min.js .",
-    "clean": "rimraf jszip.min.js epub-goat.xpi",
+    "copy-deps": "copyfiles -f node_modules/jszip/dist/jszip.js .",
+    "clean": "rimraf jszip.js jszip.min.js epub-goat.xpi",
     "package": "web-ext build --overwrite-dest",
     "dev": "web-ext run",
     "lint": "web-ext lint"
