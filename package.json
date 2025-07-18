@@ -2,7 +2,7 @@
   "name": "epub-goat",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run clean && npm run copy-deps && npm run package",
+    "build": "npm run clean && npm run copy-deps && npm run package && npm run rename",
     "copy-deps": "copyfiles -f node_modules/jszip/dist/jszip.js .",
     "clean": "rimraf jszip.js jszip.min.js web-ext-artifacts",
     "rename": "node -e \"const fs = require('fs'); const path = require('path'); const dir = 'web-ext-artifacts'; if (fs.existsSync(dir)) { fs.readdirSync(dir).forEach(file => { if (file.endsWith('.zip')) { fs.renameSync(path.join(dir, file), path.join(dir, file.replace('.zip', '.xpi'))); } }); }\"",
